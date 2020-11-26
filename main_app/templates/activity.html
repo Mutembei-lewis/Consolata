@@ -1,0 +1,304 @@
+{% extends 'base.html'%}
+{%block head%}
+<title>{{title}}</title>
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/actionpage.css')}}">
+<script>
+    $('.file-upload').file_upload();
+</script>
+<style>
+    .pt-3-half {
+        padding-top: 1.4rem;
+        max-width: 0;
+        overflow-x: scroll;
+        text-overflow: visible;
+        white-space: nowrap;
+
+        }
+        table {width: 100%;}
+
+
+</style>
+{%endblock%}
+{%block content%}
+<div class="container-fluid main-page-div" >
+    <div class="row">
+        <div class="col-md-8 ">
+            <div class="post-section card w-75 m-auto py-3">
+                <h4 class="h4 text-center"> Make a Post <small> (with image attached)</small></h4>
+                    <form action="{{url_for('activity')}}" style="color:#fff;" method="POST" enctype="multipart/form-data" class="p-4">
+
+                        {{form.hidden_tag()}}
+
+                        <span class="text-dark"> If you have  to attach an image to your post </span>
+                        <!-- Title -->
+                        <div class="form-group my-3">
+                            <input type="text" id="post-title" name="title" class="form-control mb-4" placeholder="Title">
+                        </div>
+                <!-- Category -->
+                <div class="form-group">
+                    <select class="browser-default custom-select" name="category">
+                        <option selected>Post Category</option>
+                        <option value="Enquiry">Enquiry</option>
+                        <option value="Notification">Notification</option>
+                        <option value="general">General</option>
+                      </select>
+                </div>
+
+                <!-- File Upload  Optional-->
+                <div class="file-upload-wrapper">
+                    {{form.avatar(id="input-file-now", class="file-upload")}}
+
+                </div>
+
+                  <!-- text area  -->
+                  <div class="form-group mt-4 purple-border">
+                    <label for="exampleFormControlTextarea4" class="text-dark">Description</label>
+                    <textarea class="form-control" name="description" id="exampleFormControlTextarea4" rows="2"></textarea>
+                  </div>
+
+                  <button type="submit" name="submit" class="btn btn-success btn-rounded">Send</button>
+
+               
+                </form>
+
+            </div>
+            <!-- THE END -->
+
+
+            <div class="post-section card w-75 mx-auto my-3 py-3">
+              <h4 class="h4 text-center"> Make a Post <small> (without an image)</small></h4>
+                  <form action="{{url_for('activity')}}" style="color:#fff;" method="POST" enctype="multipart/form-data" class="p-4">
+
+                      {{form.hidden_tag()}}
+
+                      <!-- Title -->
+                      <div class="form-group my-3">
+                          <input type="text" id="post-title" name="title" class="form-control mb-4" placeholder="Title">
+                      </div>
+              <!-- Category -->
+              <div class="form-group">
+                  <select class="browser-default custom-select" name="category">
+                      <option selected>Post Category</option>
+                      <option value="Enquiry">Enquiry</option>
+                      <option value="Notification">Notification</option>
+                      <option value="general">General</option>
+                    </select>
+              </div>
+
+                <!-- text area  -->
+                <div class="form-group mt-4 purple-border">
+                  <label for="exampleFormControlTextarea4" class="text-dark">Description</label>
+                  <textarea class="form-control" name="description" id="exampleFormControlTextarea4" rows="2"></textarea>
+                </div>
+
+                <button type="submit" name="submit" value="noimage" class="btn btn-success btn-rounded">Send</button>
+
+             
+              </form>
+
+          </div>
+          <!-- THE END -->
+
+
+          <!-- LOAN APPLICATION FORM SECTION -->
+
+            <!-- Material form contact -->
+<div class="card">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+      <strong>LOAN FORM</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+      <!-- Form -->
+      <form class="text-center" style="color: #757575;" method="POST" action="{{url_for('activity')}}">
+
+          <!-- Name -->
+          <div class="md-form mt-3">
+              <input type="text" name="employee_id" id="materialContactFormName" class="form-control">
+              <label for="materialContactFormName"> Employee id</label>
+
+          </div>
+
+          <!--Address -->
+          <div class="md-form mt-3">
+            <input name="address" type="text" id="materialContactFormNae" class="form-control">
+            <label for="materialContactFormName"> Address</label>
+        
+          </div>
+
+          <!-- E-mail -->
+          <div class="md-form">
+            <input type="email" name="email" id="materialContactFormEmail" class="form-control">
+            <label for="materialContactFormEmail">E-mail</label>
+        </div>
+        <div class="text-left">
+           Maritual status
+        </div>
+
+                <!-- Group of material radios - option 1 -->
+        <div class="form-check text-left">
+          <input type="radio" name="maritual_status" value="Single" class="form-check-input" id="materialGroupExample1" name="groupOfMaterialRadios">
+          <label class="form-check-label" for="materialGroupExample1">Single</label>
+        </div>
+
+        <!-- Group of material radios - option 2 -->
+        <div class="form-check text-left">
+          <input type="radio" name="maritual_status" value="Married" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked>
+          <label class="form-check-label" for="materialGroupExample2">Married</label>
+        </div>
+        <!-- Group of material radios - option 2 -->
+        <div class="form-check text-left">
+          <input type="radio" name="maritual_status" value="separated" class="form-check-input" id="materialGroupExample3" name="groupOfMaterialRadios" checked>
+          <label class="form-check-label" for="materialGroupExample3">Separated</label>
+        </div>
+
+
+
+          <!--Message-->
+          <div class="md-form">
+            <textarea id="materialContactFormMessage" name="reason" class="form-control md-textarea" rows="3"></textarea>
+            <label for="materialContactFormMessage">Reason for application</label>
+        </div>
+
+          <!-- Gross monthly income -->
+          <div class="md-form">
+            <input type="number" name="monthly_income" id="materilContactFormEmail" class="form-control">
+            <label for="materialContactFormEmail">Gross Monthly Income</label>
+          </div>
+
+          <!-- Gross monthly income -->
+          <div class="md-form">
+            <input type="number" name="loan_amount" id="materilContactFormAmount" class="form-control">
+            <label for="materialContactFormAmount">Amount of Loan requested</label>
+          </div>
+          <!-- Guarantor Name -->
+          <div class="md-form mt-3">
+            <input type="text" name="guarantor_name" id="materialConactFormName" class="form-control">
+            <label for="materialContactFormName"> Guarantor Name</label>
+    
+          </div>
+
+          <!--Address -->
+          <div class="md-form mt-3">
+            <input type="text" name="g_address" id="materialContatFormNae" class="form-control">
+            <label for="materialContactFormName"> Address</label>
+        
+          </div>
+
+          <!-- E-mail -->
+          <div class="md-form">
+              <input type="email" id="materilContactFormEmail" name="g_email" class="form-control">
+              <label for="materialContactFormEmail">E-mail</label>
+          </div>
+
+            <!-- Newsletter -->
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
+              <label class="form-check-label" required for="materialRegisterFormNewsletter">Agree to our terms and conditions</label>
+          </div>
+
+
+
+
+          <!-- Send button -->
+          <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" name="submit" value="loanform" type="submit">Apply</button>
+
+      </form>
+      <!-- Form -->
+
+  </div>
+
+</div>
+<!-- Material form contact -->
+
+       
+
+          <!-- END OF LOAN APPLICATION FORM -->
+
+        </div>
+        <div class="col-md-4 col-lg-4 d-none d-lg-block d-md-block">
+
+            <!-- start of card -->
+            <div class="card p-3 text-center">
+                <h4 class="h4 my-3"> My Posts </h4> 
+                <div class="side-block ">
+                  <div class=" number-div "> 
+                    01
+                  </div>
+                  <div  class=" text-div">
+                    <p> This is a title heading whose value should be right here </p>
+                    <span class="mr-3"> <small> Idah Gacheri</small></span> 
+                    <span> <i class="fas fa-clock"></i> 5 min ago</span> 
+                  </div>
+                </div>
+              </div>
+              <!-- end of card -->
+        </div>
+    </div>
+
+<div class="my-5">
+
+
+    <!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Manage Post Table</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+       
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <thead class="black white-text">
+            <tr>
+              <th class="text-center">Title</th>
+              <th class="text-center">Post Content</th>
+              <th class="text-center">Category</th>
+              <th class="text-center">Date Posted</th>
+              <th class="text-center">Comments</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for post in posts%}
+            <tr>
+              <td class="pt-3-half" contenteditable="true">{{post['post_title']}}</td>
+              <td class="pt-3-half" contenteditable="true">{{post['post_description']}}</td>
+              <td class="pt-3-half" contenteditable="true">{{post['post_category']}}</td>
+              <td class="pt-3-half" contenteditable="true">{{post['posted_on'].strftime("%d-%m-%Y")}}</td>
+              <td class="pt-3-half">
+                  {{post['comments']}}
+              </td>
+              <td>
+                <span class="table-remove">
+                  <a href="{{url_for('delete_post', post_id= post['post_id'])}}">
+                    <button type="button" class="btn btn-danger btn-rounded btn-sm my-0"> <i class="fas fa-trash-alt"></i></button>
+                  </a>
+                </span>
+
+                    <span class="table-remove"><button type="button"
+                        class="btn btn-success btn-rounded btn-sm my-0"><i class="fas fa-paper-plane"></i></button></span>
+              </td>
+            </tr>
+            {%endfor%}
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->
+</div>
+
+</div>
+<script>
+
+</script>
+
+
+
+{%endblock%}
